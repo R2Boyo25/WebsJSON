@@ -21,4 +21,9 @@ or a default handler with:
 async def defaultHandler(ctx, **kwargs):
 ```
 
+ctx will be a tuple:
+```py
+(websocket, Message)
+``` 
+
 `asyncio` needs to be imported before using the library
