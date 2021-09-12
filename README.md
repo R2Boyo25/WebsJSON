@@ -10,6 +10,13 @@ messages are formatted like:
 }
 ```
 
+`asyncio` needs to be imported before using the library
+
+make an instance of `WSHandler`:
+```py
+WSHandlerInstance = WebsJSON.WSHandler("ws://ip:port") # any arguments given to this are passed to websockets.connect, except onConnect and printJSONDecodeError
+```
+
 make a handler with:
 ```py
 @WSHandlerInstance.handle("type")
@@ -26,4 +33,7 @@ ctx will be a tuple:
 (websocket, Message)
 ``` 
 
-`asyncio` needs to be imported before using the library
+and then you connect with
+```py
+asyncio.run(WSHandlerInstance.connect())
+```
