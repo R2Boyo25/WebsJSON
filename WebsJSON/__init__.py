@@ -1,1 +1,1 @@
-from deco import *
+from .handlerClass import *
