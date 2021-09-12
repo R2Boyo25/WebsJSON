@@ -13,10 +13,12 @@ messages are formatted like:
 make a handler with:
 ```py
 @WSHandlerInstance.handle("type")
-async def typeHandler(ctx, **kwargs)
+async def typeHandler(ctx, **kwargs):
 ```
 or a default handler with:
 ```py
 @WSHandlerInstance.handle()
-async def defaultHandler(ctx, **kwargs)
+async def defaultHandler(ctx, **kwargs):
 ```
+
+`asyncio` needs to be imported before using the library
