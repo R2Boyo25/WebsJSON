@@ -27,11 +27,11 @@ class WSHandler():
             raise EmptyArgumentsException()            
 
     def handel(self, typename):
-        def decorator_handel(function):
+        def decorator_handel(function = '_default'):
             self.handlers[typename] = function
         return decorator_handel
         
-    def handle(self, typename):
+    def handle(self, typename = '_default'):
         def decorator_handle(function):
             self.handlers[typename] = function
         return decorator_handle
@@ -43,12 +43,15 @@ class WSHandler():
             async for message in ws:
                 try:
                     message = Message(message)
+                    args = {}
+                    for item in message.toDict().items():
+                        if item[0] != 'type':
+                            args[item[0]] = item[1]
                     if message.type in self.handlers.keys():
-                        args = []
-                        for item in message.toDict().items():
-                            if item[0] != 'type':
-                                args.append(item[1])
-                        await self.handlers[message.type]((ws, message), *args)
+                        await self.handlers[message.type]((ws, message), **args)
+                    else:
+                        if '_default' in self.handlers.keys():
+                            await self.handlers['_default']((ws, message), **args)
                 except json.JSONDecodeError as exception:
                     if self.printJsonDecodeError:
                         print('JSONDecodeError on\n{}'.format(json.dumps(message, indent = 4)))
