@@ -4,12 +4,7 @@ class Context:
         self.message = message
     
     def __getitem__(self, item):
-        if item == 0:
-            return self.websocket
-        elif item == 1:
-            return self.message
-        else:
-            raise IndexError
+        return [self.websocket, self.message][item]
         
     def send(self, *args, **kwargs):
         self.websocket.send(*args, **kwargs)
