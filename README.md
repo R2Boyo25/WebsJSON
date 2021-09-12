@@ -28,9 +28,11 @@ or a default handler with:
 async def defaultHandler(ctx, **kwargs):
 ```
 
-ctx will be a tuple:
+ctx will be a `Context` instance:
 ```py
-(websocket, Message)
+ctx.message # the Message instance (if you need to access the Message class and be given kwargs for some reason)
+ctx.websocket # the websocket that the client is connected to
+ctx.send() # same as ctx.websocket.send()
 ``` 
 
 and then you connect with

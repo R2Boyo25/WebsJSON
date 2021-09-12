@@ -13,7 +13,7 @@ class WSHandler():
         self.onConnect = None
 
         for key, value in kwargs.items():
-            if key.lower() == 'printcsoncecodeerror':
+            if key.lower() == 'printjsondecodeerror':
                 self.printJsonDecodeError = value
             elif key.lower() == 'onconnect':
                 self.onConnect = value
@@ -48,10 +48,10 @@ class WSHandler():
                         if item[0] != 'type':
                             args[item[0]] = item[1]
                     if message.type in self.handlers.keys():
-                        await self.handlers[message.type]((ws, message), **args)
+                        await self.handlers[message.type](Context(ws, message), **args)
                     else:
                         if '_default' in self.handlers.keys():
-                            await self.handlers['_default']((ws, message), **args)
+                            await self.handlers['_default'](Context(ws, message), **args)
                 except json.JSONDecodeError as exception:
                     if self.printJsonDecodeError:
                         print('JSONDecodeError on\n{}'.format(json.dumps(message, indent = 4)))
