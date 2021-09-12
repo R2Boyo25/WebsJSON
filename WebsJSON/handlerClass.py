@@ -13,7 +13,7 @@ class WSHandler():
         self.onConnect = None
 
         for key, value in kwargs.items():
-            if key.lower() == 'printcsoncecodeerror':
+            if key.lower() == 'printjsondecodeerror':
                 self.printJsonDecodeError = value
             elif key.lower() == 'onconnect':
                 self.onConnect = value
