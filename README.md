@@ -1,3 +1,5 @@
+### Websockets library cannot do what I need so I'm archiving this and switching to a different websocket library
+
 Library for adding handlers for messages over a websocket.
 
 messages are formatted like:
