@@ -7,5 +7,5 @@ setup(
     description='Library to make functions for json messages over websockets',
     author='R2Boyo25',
     license='GPLV3',
-    install_requires=['websockets', 'pathlib', 'ssl']
+    install_requires=['websockets', 'pathlib']#, 'ssl']
 )
