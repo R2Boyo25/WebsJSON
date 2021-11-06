@@ -1,1 +1,1 @@
-pip3 remove WebsJSON
+pip3 uninstall WebsJSON
