@@ -1,0 +1,4 @@
+{
+    "installScript": ".avalon/install.sh",
+    "uninstallScript": ".avalon/uninstall.sh"
+}
